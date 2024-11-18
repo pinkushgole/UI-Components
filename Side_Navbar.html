@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar with Toggle Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Sidebar styling */
+        
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: teal;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            z-index: 1000;
+            /* Keep sidebar above content */
+        }
+        /* Sidebar links */
+        
+        .sidebar a {
+            padding: 15px 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        
+        .sidebar a:hover {
+            background-color: white;
+            color: black;
+        }
+        /* Main container for toggle and welcome */
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-left: 250px;
+            /* Space for sidebar when visible */
+            transition: margin-left 0.3s;
+        }
+        /* Toggle button */
+        
+        .toggle-btn {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            cursor: pointer;
+            margin-right: 20px;
+            /* Space between button and welcome text */
+        }
+        
+        .toggle-btn:hover {
+            color: blue;
+        }
+        /* Welcome text next to toggle */
+        
+        .welcome-text {
+            font-size: 24px;
+        }
+        /* Main content styling (below the header) */
+        
+        .main-content {
+            padding: 20px;
+            margin-left: 250px;
+            /* Space for sidebar when visible */
+            background-color: white;
+            transition: margin-left 0.3s;
+        }
+        /* Hide sidebar */
+        
+        .sidebar.hidden {
+            left: -250px;
+            /* Move sidebar off-screen */
+        }
+        /* Shift content when sidebar is hidden */
+        
+        .header-container.hidden,
+        .main-content.hidden {
+            margin-left: 0;
+        }
+        /* Media Query for small screens */
+        
+        @media screen and (max-width: 600px) {
+            .sidebar {
+                width: 200px;
+            }
+            .sidebar.hidden {
+                left: -200px;
+            }
+            .header-container {
+                margin-left: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+            }
+            .header-container.hidden,
+            .main-content.hidden {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2>USER DASHBOARD</h2>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Header Container (Toggle + Welcome on the same line) -->
+    <div class="header-container" id="header-container">
+        <!-- Toggle Button -->
+        <button class="toggle-btn" id="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <!-- Welcome Text -->
+        <div class="welcome-text">Welcome</div>
+    </div>
+    <div class="main-content" id="main-content">
+        <h1>Main Content Area</h1>
+        <p>This content is shown below the toggle button and welcome message.</p>
+        <p>When the sidebar is hidden, this content will take the full width of the page.</p>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var headerContainer = document.getElementById('header-container');
+            var mainContent = document.getElementById('main-content');
+            var toggleBtn = document.getElementById('toggle-btn');
+
+            // Toggle hidden class
+            sidebar.classList.toggle('hidden');
+            headerContainer.classList.toggle('hidden');
+            mainContent.classList.toggle('hidden');
+
+            // Change button text
+            if (sidebar.classList.contains('hidden')) {
+                toggleBtn.textContent = '☰';
+            } else {
+                toggleBtn.textContent = '☰';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

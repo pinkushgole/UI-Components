@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Pagination Example</title>
+    <style>
+        .sale_section {
+            padding-bottom: 20px;
+        }
+        
+        .heading_container {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .sale_container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hostel-card {
+            flex: 0 1 calc(33.33% - 20px);
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            margin: 0 5px;
+            padding: 8px 12px;
+        }
+        
+        .pagination button.active {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sale_section">
+        <div class="container-fluid">
+            <div class="heading_container">
+                <h2>Our hostel services</h2>
+                <p>There are many variations of passages of Lorem Ipsum available, but the</p>
+            </div>
+            <div id="hostelContainer" class="sale_container"></div>
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </section>
+
+    <script>
+        // Sample data for hostel items
+        const hostels = Array.from({
+            length: 20
+        }, (_, i) => ({
+            id: i + 1,
+            hostelName: `Hostel ${i + 1}`,
+            address: `Location ${i + 1}`,
+            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.`,
+            imageUrl: "https://via.placeholder.com/200" // Placeholder image URL
+        }));
+
+        const itemsPerPage = 6;
+        let currentPage = 1;
+
+        function renderItems() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const hostelContainer = document.getElementById("hostelContainer");
+            hostelContainer.innerHTML = ""; // Clear the current items
+
+            // Display items for the current page
+            hostels.slice(startIndex, endIndex).forEach(hostel => {
+                const hostelCard = document.createElement("div");
+                hostelCard.className = "hostel-card";
+                hostelCard.innerHTML = `
+                    <a href="#" onclick="viewHostel(${hostel.id})">
+                        <div class="img-box">
+                            <img src="${hostel.imageUrl}" alt="${hostel.hostelName}">
+                        </div>
+                        <div class="detail-box">
+                            <h6>${hostel.hostelName}</h6>
+                            <p class="location"><i class="fa-solid fa-location-dot"></i> ${hostel.address}</p>
+                            <p class="description">${hostel.description}</p>
+                        </div>
+                    </a>
+                `;
+                hostelContainer.appendChild(hostelCard);
+            });
+        }
+
+        function renderPagination() {
+            const pagination = document.getElementById("pagination");
+            const totalPages = Math.ceil(hostels.length / itemsPerPage);
+            pagination.innerHTML = "";
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.className = i === currentPage ? "active" : "";
+                button.onclick = () => goToPage(i);
+                pagination.appendChild(button);
+            }
+        }
+
+        function goToPage(pageNumber) {
+            currentPage = pageNumber;
+            renderItems();
+            renderPagination();
+        }
+
+        function viewHostel(id) {
+            alert(`Viewing hostel with ID: ${id}`);
+        }
+
+        // Initial render
+        renderItems();
+        renderPagination();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Card Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .heading_container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 cards per row */
+            gap: 20px;
+            max-height: 600px;
+            /* Limit height for scrollable container */
+            overflow-y: scroll;
+            /* Scroll when more than 6 cards */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .card h4 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+        /* Styling the scrollbar */
+        
+        .card-container::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .card-container::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+        
+        .card-container::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="heading_container">
+            <h2>Scrollable Card Layout</h2>
+            <p>Here are 12 cards. Scroll down to see more!</p>
+        </div>
+
+        <div class="card-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 1</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 2</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 3</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 4</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 5 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 5</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 6 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 6</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 7 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 7</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 8 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 8</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 9 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 9</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 10 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 10</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 11 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 11</h4>
+                <p>Card description goes here.</p>
+            </div>
+            <!-- Card 12 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card image">
+                <h4>Card Title 12</h4>
+                <p>Card description goes here.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

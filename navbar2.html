@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav</title>
+    <style>
+        /* General Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b98484;
+        }
+        /* Navbar Styles */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+            background-color: #000d33;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.4s ease-in-out;
+        }
+        
+        .navbar:hover {
+            background-color: #093ace;
+            transition: background-color 0.4s ease-in-out;
+        }
+        
+        .navbar .logo a {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar .logo a:hover {
+            color: #ffb84d;
+            transform: scale(1.1);
+            /* Slightly enlarge on hover */
+        }
+        /* Nav Links Styling */
+        
+        .navbar .nav-links {
+            list-style-type: none;
+            display: flex;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        .navbar .nav-links li {
+            margin-left: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .navbar .nav-links li a {
+            display: block;
+            color: #fefefe;
+            font-size: 20px;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: 0.2s;
+            margin: 0 5px;
+        }
+        
+        .navbar .nav-links li:hover {
+            transform: translateY(-5px);
+        }
+        
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s;
+        }
+        
+        .navbar .nav-links a:hover {
+            background-color: #ffb84d;
+            color: wheat;
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+        
+        .navbar .nav-links a:active {
+            transform: scale(0.9);
+            background-color: #28a745;
+            transition: transform 0.1s ease;
+        }
+        /* Hamburger Styles */
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .hamburger .line {
+            width: 30px;
+            height: 3px;
+            background: #fefefe;
+            margin: 6px 0;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .hamburger.active .line:nth-child(1) {
+            transform: rotate(45deg);
+            margin-top: 7px;
+        }
+        
+        .hamburger.active .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .line:nth-child(3) {
+            transform: rotate(-45deg);
+            margin-top: -7px;
+        }
+        /* Mobile Styles */
+        
+        @media only screen and (max-width: 900px) {
+            .hamburger {
+                display: block;
+            }
+            /* Hide the nav links on mobile by default */
+            .nav-links {
+                height: 0;
+                overflow: hidden;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                /* background: #11101b; */
+                transition: height 0.5s ease, opacity 0.5s ease;
+                opacity: 0;
+            }
+            .nav-links.active {
+                height: 450px;
+                opacity: 1;
+                display: block;
+                width: fit-content;
+                margin: 0 auto 0 auto;
+                text-align: center;
+                transition: opacity 0.5s ease;
+                opacity: 4;
+            }
+            .nav-links.active ul {
+                opacity: 1;
+            }
+            .nav-links ul li a {
+                margin-bottom: 12px;
+                color: white;
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/">Hostel</a>
+        </div>
+
+        <!-- Hamburger Button -->
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'user_login' %}">Login</a></li>
+            <li><a href="{% url 'user_signup' %}">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // JavaScript to toggle the nav-links and hamburger menu state
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+    </script>
+</body>
+
+</html>

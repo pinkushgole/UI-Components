@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 90%;
+            max-width: 1200px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-section {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-section:hover img {
+            transform: scale(1.1);
+            /* Subtle zoom effect */
+        }
+        
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent background */
+            border-radius: 10px;
+            max-width: 90%;
+        }
+        
+        .text-overlay h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .text-overlay p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .login-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .login-box {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            /* Increase max-width for more space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s forwards;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: #2a6ed8;
+            /* Blue variant */
+            font-size: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+        
+        .form-group {
+            /* width: 100%; */
+            width: 50vh;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #2a6ed8;
+            outline: none;
+            box-shadow: 0 0 8px rgba(42, 110, 216, 0.5);
+            transform: scale(1.02);
+        }
+        
+        input::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+        
+        .login-btn {
+            background-color: #2a6ed8;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background-color: #1a4b9b;
+            /* Darker blue on hover */
+            transform: scale(1.05);
+        }
+        
+        .create-account {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 1.2s 1s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        .create-account a {
+            color: #2a6ed8;
+            text-decoration: none;
+        }
+        
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Media Queries for responsiveness */
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            .image-section,
+            .login-section {
+                width: 100%;
+                height: auto;
+            }
+            .text-overlay h1 {
+                font-size: 2rem;
+            }
+            .text-overlay p {
+                font-size: 1rem;
+            }
+            .login-box {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .text-overlay h1 {
+                font-size: 1.8rem;
+            }
+            .text-overlay p {
+                font-size: 0.9rem;
+            }
+            .login-btn {
+                font-size: 14px;
+            }
+            .login-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Side: Image and Text -->
+        <div class="image-section">
+            <img src="login.jpg" alt="Hostel Image">
+            <div class="text-overlay">
+                <h1>Welcome to Our Hostel</h1>
+                <p>Comfortable and affordable living spaces for students and travelers. A safe, homely environment awaits you!</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="login-section">
+            <div class="login-box">
+                <h2>Login</h2>
+                <form action="#">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <div class="create-account">
+                    <p>Don't have an account? <a href="#">Create one here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
