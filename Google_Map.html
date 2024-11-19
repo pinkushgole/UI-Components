@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Google Maps with Address</title>
+</head>
+
+<body>
+
+    <h3>Click the button to open Google Maps with an address:</h3>
+
+    <button onclick="openMapWithAddress()">Open Google Map with Address</button>
+
+    <script>
+        function openMapWithAddress() {
+            const address = "Bholaram Square,indore";
+
+            const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}`;
+
+            window.open(mapUrl, '_blank');
+        }
+    </script>
+
+</body>
+
+</html>
